@@ -15,18 +15,26 @@ export class Bills extends Component {
       <Table responsible="true" striped bordered>
         <thead>
           <tr>
-            <th>Bill Id</th>
-            <th>Tenant Id</th>
+            <th>Bill Type</th>
             <th>Price</th>
+            <th>Price Total</th>
+            <th>Start Date</th>
+            <th>End Date</th>
             <th>Payment Date</th>
           </tr>
         </thead>
         <tbody>
           {this.props.data.map(row => (
             <tr key={row.id}>
-              <td key={row.id + "_id"}>{row.bill_id}</td>
-              <td key={row.id + "_tenant_id"}>{row.tenant_id}</td>
+              <td key={row.id + "_type"}>{row.bill.type.name}</td>
               <td key={row.id + "_price"}>{row.price}</td>
+              <td key={row.id + "_price_total"}>{row.bill.price}</td>
+              <td key={row.id + "_payment_date"}>
+                {new Date(row.bill.period_start).toLocaleDateString()}
+              </td>
+              <td key={row.id + "_payment_date"}>
+                {new Date(row.bill.period_end).toLocaleDateString()}
+              </td>
               <td key={row.id + "_payment_date"}>
                 {new Date(row.payment_date).toLocaleDateString()}
               </td>
