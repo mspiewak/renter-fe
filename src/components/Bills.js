@@ -16,10 +16,11 @@ export class Bills extends Component {
         <thead>
           <tr>
             <th>Bill Type</th>
-            <th>Price</th>
-            <th>Price Total</th>
             <th>Start Date</th>
             <th>End Date</th>
+            <th>Due Date</th>
+            <th>Price Total</th>
+            <th>Price</th>
             <th>Payment Date</th>
           </tr>
         </thead>
@@ -27,15 +28,29 @@ export class Bills extends Component {
           {this.props.data.map(row => (
             <tr key={row.id}>
               <td key={row.id + "_type"}>{row.bill.type.name}</td>
-              <td key={row.id + "_price"}>{row.price}</td>
-              <td key={row.id + "_price_total"}>{row.bill.price}</td>
-              <td key={row.id + "_payment_date"}>
+
+              <td key={row.id + "_period_start"}>
                 {new Date(row.bill.period_start).toLocaleDateString()}
               </td>
-              <td key={row.id + "_payment_date"}>
+              <td key={row.id + "_period_end"}>
                 {new Date(row.bill.period_end).toLocaleDateString()}
               </td>
-              <td key={row.id + "_payment_date"}>
+              <td key={row.id + "_due_date"}>
+                {new Date(row.bill.due_date).toLocaleDateString()}
+              </td>
+              <td key={row.id + "_price_total"}>{row.bill.total_price}</td>
+              <td key={row.id + "_price"}>{row.price}</td>
+              <td
+                key={row.id + "_payment_date"}
+                className={
+                  "alert " +
+                  (new Date(row.bill.due_date).getTime() -
+                    new Date(row.payment_date).getTime() <
+                  0
+                    ? "alert-warning"
+                    : "alert-success")
+                }
+              >
                 {new Date(row.payment_date).toLocaleDateString()}
               </td>
             </tr>
