@@ -7,7 +7,13 @@ import { Table } from "react-bootstrap";
 // App.js
 export class Bills extends Component {
   componentDidMount() {
-    this.props.getBillsPerTenant(this.props.params.id);
+    this.props.getBillsPerTenant(this.props.match.params.id);
+  }
+
+  componentWillReceiveProps(newProps) {
+    if (newProps.match.params.id !== this.props.match.params.id) {
+      this.props.getBillsPerTenant(newProps.match.params.id);
+    }
   }
 
   render() {
@@ -46,12 +52,14 @@ export class Bills extends Component {
                   "alert " +
                   (new Date(row.bill.due_date).getTime() -
                     new Date(row.payment_date).getTime() <
-                  0
+                    0 || row.payment_date === null
                     ? "alert-warning"
                     : "alert-success")
                 }
               >
-                {new Date(row.payment_date).toLocaleDateString()}
+                {row.payment_date !== null
+                  ? new Date(row.payment_date).toLocaleDateString()
+                  : ""}
               </td>
             </tr>
           ))}
@@ -61,7 +69,6 @@ export class Bills extends Component {
   }
 }
 
-// AppContainer.js
 const mapStateToProps = (state, ownProps) => ({
   data: state
 });

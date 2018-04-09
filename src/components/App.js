@@ -1,5 +1,5 @@
 import React from "react";
-import { Link } from "react-router";
+import { Link } from "react-router-dom";
 
 export class App extends React.Component {
   render() {
@@ -8,10 +8,16 @@ export class App extends React.Component {
         <h1>Renter</h1>
         <ul>
           <li>
-            <Link to="/">Main</Link>
+            <Link to="/bills/i4lrehq">Sabina Sliwka</Link>
           </li>
           <li>
-            <Link to="/bills/1">Bills</Link>
+            <Link to="/bills/ggl0qk8">Malgorzata Kaczmarczyk</Link>
+          </li>
+          <li>
+            <Link to="/bills/4duspw0">Piotr Katana</Link>
+          </li>
+          <li>
+            <Link to="/bills/wm4yk48">Przemyslaw Puchalski</Link>
           </li>
         </ul>
       </div>

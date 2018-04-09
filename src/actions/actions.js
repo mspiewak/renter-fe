@@ -4,7 +4,9 @@ import axios from "axios";
 export default function getBillsPerTenant(id) {
   return dispatch => {
     axios.get("http://localhost:8090/tenant/" + id + "/bill").then(res => {
-      dispatch(getBillsPerTenantAsync(res.data));
+      if (res.status === 200) {
+        dispatch(getBillsPerTenantAsync(res.data));
+      }
     });
   };
 }
