@@ -16,7 +16,7 @@ render(
   <Provider store={store}>
     <Router>
       <Fragment>
-        <Route path="/" component={App} />
+        <Route exact path="/zadmin" component={App} />
         <Route path="/bills/:id" component={Bills} />
       </Fragment>
     </Router>
