@@ -32,8 +32,11 @@ export class Bills extends Component {
         <tbody>
           {this.props.data.map(row => (
             <tr key={row.id}>
-              <td key={row.id + "_type"}>{row.bill.type.name}</td>
-
+              <td key={row.id + "_type"}>
+                <a href={row.bill.url} target="blank">
+                  {row.bill.type.name}
+                </a>
+              </td>
               <td key={row.id + "_period_start"}>
                 {new Date(row.bill.period_start).toLocaleDateString()} -{" "}
                 {new Date(row.bill.period_end).toLocaleDateString()}
