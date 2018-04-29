@@ -6,20 +6,6 @@ export class App extends React.Component {
     return (
       <div>
         <h1>Renter</h1>
-        <ul>
-          <li>
-            <Link to="/bills/i4lrehq">Sabina Sliwka</Link>
-          </li>
-          <li>
-            <Link to="/bills/ggl0qk8">Malgorzata Kaczmarczyk</Link>
-          </li>
-          <li>
-            <Link to="/bills/4duspw0">Piotr Katana</Link>
-          </li>
-          <li>
-            <Link to="/bills/wm4yk48">Przemyslaw Puchalski</Link>
-          </li>
-        </ul>
       </div>
     );
   }

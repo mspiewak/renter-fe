@@ -7,7 +7,8 @@ import reducers from "./reducers";
 
 import { App } from "./components/App";
 import Bills from "./components/Bills";
-import { BrowserRouter as Router, Route } from "react-router-dom";
+import { BrowserRouter as Router, Route, Link } from "react-router-dom";
+import { Admin } from "./components/Admin";
 
 const createStoreWithMiddleware = applyMiddleware(thunk)(createStore);
 const store = createStoreWithMiddleware(reducers);
@@ -16,8 +17,9 @@ render(
   <Provider store={store}>
     <Router>
       <Fragment>
-        <Route exact path="/zadmin" component={App} />
-        <Route path="/bills/:id" component={Bills} />
+        <Route exact path="/" component={App} />
+        <Route exact path="/zadmin" component={Admin} />
+        <Route exact path="/bills/:id" component={Bills} />
       </Fragment>
     </Router>
   </Provider>,
