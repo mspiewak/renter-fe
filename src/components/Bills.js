@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
-import getBillsPerTenant from "./../actions/actions";
+import { getBillsPerTenant } from "./../actions/actions";
 import { Table } from "react-bootstrap";
 
 // App.js
@@ -80,6 +80,9 @@ function mapDispatchToProps(dispatch) {
   );
 }
 
-const BillsContainer = connect(mapStateToProps, mapDispatchToProps)(Bills);
+const BillsContainer = connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(Bills);
 
 export default BillsContainer;
