@@ -19,6 +19,7 @@ render(
       <Fragment>
         <Route exact path="/" component={App} />
         <Route exact path="/zadmin" component={Admin} />
+        <Route exact path="/bills/:id" component={Tenants} />
         <Route exact path="/tenant/:id" component={Tenants} />
       </Fragment>
     </Router>
