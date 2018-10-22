@@ -6,10 +6,9 @@ import thunk from "redux-thunk";
 import reducers from "./reducers";
 
 import { App } from "./components/App";
-import Bills from "./components/Bills";
 import { BrowserRouter as Router, Route } from "react-router-dom";
 import { Admin } from "./components/Admin";
-import Payments from "./components/Payments";
+import Tenants from "./components/Tenant";
 
 const createStoreWithMiddleware = applyMiddleware(thunk)(createStore);
 const store = createStoreWithMiddleware(reducers);
@@ -20,8 +19,7 @@ render(
       <Fragment>
         <Route exact path="/" component={App} />
         <Route exact path="/zadmin" component={Admin} />
-        <Route exact path="/bills/:id" component={Bills} />
-        <Route exact path="/payments/:id" component={Payments} />
+        <Route exact path="/tenant/:id" component={Tenants} />
       </Fragment>
     </Router>
   </Provider>,
