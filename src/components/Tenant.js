@@ -32,10 +32,10 @@ export class Tenants extends Component {
           </h3>
         </div>
         <div className="row">
-          <div className="col-9">
+          <div className="col-xs-12 col-sm-6">
             <Bills />
           </div>
-          <div className="col-3">
+          <div className="col-xs-12 col-sm-6">
             <Payments />
           </div>
         </div>
