@@ -9,6 +9,7 @@ import { App } from "./components/App";
 import { BrowserRouter as Router, Route } from "react-router-dom";
 import { Admin } from "./components/Admin";
 import Tenants from "./components/Tenant";
+import NewBill from "./components/NewBill";
 
 const createStoreWithMiddleware = applyMiddleware(thunk)(createStore);
 const store = createStoreWithMiddleware(reducers);
@@ -21,6 +22,7 @@ render(
         <Route exact path="/zadmin" component={Admin} />
         <Route exact path="/bills/:id" component={Tenants} />
         <Route exact path="/tenant/:id" component={Tenants} />
+        <Route exact path="/newBill" component={NewBill} />
       </Fragment>
     </Router>
   </Provider>,

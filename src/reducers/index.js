@@ -1,6 +1,7 @@
 import {
   GET_BILLS_PER_TENANT,
-  GET_PAYMENTS_PER_TENANT
+  GET_PAYMENTS_PER_TENANT,
+  POST_BILL
 } from "../actions/types";
 
 const initialState = {
@@ -18,6 +19,8 @@ export default function(state = initialState, action) {
       return Object.assign({}, state, {
         payments: action.payload
       });
+    case POST_BILL:
+      return Object.assign({}, state, {});
     default:
       return state;
   }
