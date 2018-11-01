@@ -1,7 +1,12 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
-import { getFormattedDate, postBill } from "./../actions/actions";
+import { postBill } from "./../actions/actions";
+
+import DatePicker from "react-datepicker";
+import moment from "moment";
+
+import "react-datepicker/dist/react-datepicker.css";
 
 export class NewBill extends Component {
   constructor(props) {
@@ -13,9 +18,9 @@ export class NewBill extends Component {
     this.state = {
       bill: {
         total_price: 0,
-        due_date: getFormattedDate(new Date()),
-        period_start: getFormattedDate(lastMonthDate),
-        period_end: getFormattedDate(new Date()),
+        due_date: moment(),
+        period_start: moment().subtract(1, "month"),
+        period_end: moment(),
         url: "",
         type: 2
       },
@@ -23,6 +28,7 @@ export class NewBill extends Component {
     };
 
     this.handleInputChange = this.handleInputChange.bind(this);
+    this.handleDateChange = this.handleDateChange.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
   }
 
@@ -41,13 +47,22 @@ export class NewBill extends Component {
     });
   }
 
+  handleDateChange = id => (moment, event) => {
+    this.setState({
+      bill: Object.assign({}, this.state.bill, {
+        [id]: moment
+      })
+    });
+  };
+
   handleSubmit(event) {
     event.preventDefault();
     let data = Object.assign({}, this.state.bill);
     data.type = { id: data.type };
-    data.due_date = new Date(data.due_date).toISOString();
-    data.period_start = new Date(data.period_start).toISOString();
-    data.period_end = new Date(data.period_end).toISOString();
+
+    data.due_date = data.due_date.format();
+    data.period_start = data.period_start.format();
+    data.period_end = data.period_end.format();
 
     this.props.postBill(data);
     this.setState({
@@ -69,10 +84,12 @@ export class NewBill extends Component {
   renderForm() {
     return (
       <form onSubmit={this.handleSubmit}>
-        <div className="form-group">
-          <label htmlFor="type">Type</label>
+        <div className="form-group row">
+          <label htmlFor="type" className="col-sm-2 col-form-label">
+            Type:
+          </label>
           <select
-            className="form-control"
+            className="form-control col-sm-10"
             id="type"
             value={this.state.bill.type}
             onChange={this.handleInputChange}
@@ -83,54 +100,58 @@ export class NewBill extends Component {
             <option value="4">Water</option>
           </select>
         </div>
-        <div className="form-group">
-          <label htmlFor="amount">Amount</label>
+        <div className="form-group row">
+          <label htmlFor="amount" className="col-sm-2 col-form-label">
+            Amount:
+          </label>
           <input
             type="number"
-            className="form-control"
+            className="form-control col-sm-10"
             id="total_price"
             value={this.state.bill.total_price}
             onChange={this.handleInputChange}
           />
         </div>
-        <div className="form-group">
-          <label htmlFor="due_date">Due Date</label>
-          <input
-            type="date"
-            className="form-control"
-            id="due_date"
-            value={this.state.bill.due_date}
-            onChange={this.handleInputChange}
-          />
-        </div>
-        <div className="form-group">
-          <label htmlFor="period_start">Period Start</label>
-          <input
-            type="date"
-            className="form-control"
-            id="period_start"
-            value={this.state.bill.period_start}
-            onChange={this.handleInputChange}
-          />
-        </div>
-        <div className="form-group">
-          <label htmlFor="period_end">Period End</label>
-          <input
-            type="date"
-            className="form-control"
-            id="period_end"
-            value={this.state.bill.period_end}
-            onChange={this.handleInputChange}
-          />
-        </div>
-        <div className="form-group">
-          <label htmlFor="url">URL</label>
+        <div className="form-group row">
+          <label htmlFor="url" className="col-sm-2 col-form-label">
+            URL
+          </label>
           <input
             type="text"
-            className="form-control"
+            className="form-control col-sm-10"
             id="url"
             value={this.state.bill.url}
             onChange={this.handleInputChange}
+          />
+        </div>
+        <div className="form-group row">
+          <label htmlFor="due_date" className="col-sm-2 col-form-label">
+            Due Date
+          </label>
+          <DatePicker
+            selected={this.state.bill.due_date}
+            onChange={this.handleDateChange("due_date")}
+            dateFormat="DD-MM-YYYY"
+          />
+        </div>
+        <div className="form-group row">
+          <label htmlFor="period_start" className="col-sm-2 col-form-label">
+            Period Start
+          </label>
+          <DatePicker
+            selected={this.state.bill.period_start}
+            onChange={this.handleDateChange("period_start")}
+            dateFormat="DD-MM-YYYY"
+          />
+        </div>
+        <div className="form-group row">
+          <label htmlFor="period_end" className="col-sm-2 col-form-label">
+            Period End
+          </label>
+          <DatePicker
+            selected={this.state.bill.period_end}
+            onChange={this.handleDateChange("period_end")}
+            dateFormat="DD-MM-YYYY"
           />
         </div>
 
