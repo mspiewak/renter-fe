@@ -21,6 +21,12 @@ export class Tenants extends Component {
   render() {
     return (
       <div className="container mt-3">
+        <div className="col-4">
+          <a href="https://s3.eu-west-2.amazonaws.com/bills-bb/BBA_17540944.pdf" target="blank">
+            <h3 className="alert alert-success">Rozpiska śmieci</h3>
+          </a>
+        </div>
+      
         <div>
           <h3
             className={
