@@ -10,7 +10,7 @@ export function getBillsPerTenant(id) {
   return dispatch => {
     axios
       .get(
-        "http://ec2-13-58-70-152.us-east-2.compute.amazonaws.com:8090/tenant/" +
+        "http://ec2-3-16-131-81.us-east-2.compute.amazonaws.com:8090/tenant/" +
           id +
           "/bill"
       )
@@ -26,7 +26,7 @@ export function getPaymentsPerTenant(id) {
   return dispatch => {
     axios
       .get(
-        "http://ec2-13-58-70-152.us-east-2.compute.amazonaws.com:8090/tenant/" +
+        "http://ec2-3-16-131-81.us-east-2.compute.amazonaws.com:8090/tenant/" +
           id +
           "/payment"
       )
@@ -42,7 +42,7 @@ export function postBill(data) {
   return dispatch => {
     axios
       .post(
-        "http://ec2-13-58-70-152.us-east-2.compute.amazonaws.com:8090/bill",
+        "http://ec2-3-16-131-81.us-east-2.compute.amazonaws.com:8090/bill",
         data
       )
       .then(res => {
@@ -57,7 +57,7 @@ export function getIncome() {
   return dispatch => {
     axios
       .get(
-        "http://ec2-13-58-70-152.us-east-2.compute.amazonaws.com:8090/stats/income"
+        "http://ec2-3-16-131-81.us-east-2.compute.amazonaws.com:8090/stats/income"
       )
       .then(res => {
         if (res.status === 200) {
