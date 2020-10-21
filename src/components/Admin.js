@@ -42,6 +42,9 @@ export class Admin extends React.Component {
           <li>
             <Link to="/tenant/fgb2g6">Adrian Konior</Link>
           </li>
+          <li>
+            <Link to="/tenant/qfd9d7">Marcin Bienkowski</Link>
+          </li>
         </ul>
         <div>
           <Link to="admin/newBill">New Bill</Link>
